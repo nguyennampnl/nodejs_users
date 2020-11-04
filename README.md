@@ -11,6 +11,15 @@ express --view=pug users
 
 # run
 
+```bash
+nodemon app.js
+```
+
+http://localhost/
+http://localhost/users
+
+================================================================
+
 DEBUG=users:* npm start
 
 http://localhost:3000/
@@ -44,4 +53,36 @@ app.put('/user', function (req, res) {
 app.delete('/user', function (req, res) {
   res.send('Got a DELETE request at /user')
 })
+
+## Databases
+
+Ref: https://expressjs.com/en/guide/database-integration.html#mysql
+
+### MySql
+
+#### Install
+npm install mysql
+
+
+#### Example
+
+var mysql = require('mysql')
+var connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'NguyenNam2020',
+  database: 'users'
+})
+
+connection.connect()
+
+connection.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
+  if (err) throw err
+
+  console.log('The solution is: ', rows[0].solution)
+})
+
+connection.end()
+
+
 
